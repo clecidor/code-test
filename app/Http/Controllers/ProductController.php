@@ -34,8 +34,14 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate(Product::validatorRules());
+
         /** @var Product $product */
         $product = Product::make($validatedData);
+
+        if ($user = $request->user()) {
+            $product->user()->associate($user);
+        }
+        
         $product->save();
 
         return $product->refresh();
