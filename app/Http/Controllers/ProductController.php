@@ -25,8 +25,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate(Product::validatorRules());
         /** @var Product $product */
-        $product = Product::make($request->all());
+        $product = Product::make($validatedData);
         $product->save();
 
         return $product->refresh();
@@ -35,8 +36,8 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  Product  $product
+     * @return Product
      */
     public function show(Product $product)
     {
@@ -47,12 +48,13 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  Product  $product
+     * @return Product
      */
     public function update(Request $request, Product $product)
     {
-        $product->fill($request->all());
+        $validatedData = $request->validate(Product::validatorRules());
+        $product->fill($validatedData);
         $product->save();
 
         return $product->refresh();
@@ -61,8 +63,8 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  Product  $product
+     * @return array [deleted => Product]
      */
     public function destroy(Product $product)
     {

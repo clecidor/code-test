@@ -12,4 +12,15 @@ class Product extends Model
         'price',
         'image',
     ];
+
+    /**
+     * @return array
+     */
+    public static function validatorRules () {
+        return [
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+        ];
+    }
 }
