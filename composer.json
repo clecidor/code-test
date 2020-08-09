@@ -58,7 +58,8 @@
         ],
         "post-install-cmd": [
             "@php artisan key:generate --ansi",
-            "@php artisan migrate"
+            "@php artisan migrate",
+            "@php artisan db:seed"
         ]
     }
 }
