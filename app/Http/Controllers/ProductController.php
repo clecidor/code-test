@@ -10,22 +10,26 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Product[]
      */
     public function index()
     {
-        //
+        return Product::all();
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Product
      */
     public function store(Request $request)
     {
-        //
+        /** @var Product $product */
+        $product = Product::make($request->all());
+        $product->save();
+
+        return $product->refresh();
     }
 
     /**
@@ -36,7 +40,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return $product;
     }
 
     /**
@@ -48,7 +52,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->fill($request->all());
+        $product->save();
+
+        return $product->refresh();
     }
 
     /**
@@ -59,6 +66,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if ($product->delete()) {
+            return [
+                'deleted' => $product
+            ];
+        }
     }
 }
