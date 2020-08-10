@@ -1,0 +1,454 @@
+{
+	"info": {
+		"_postman_id": "2fe6df77-3f4d-4e8d-b0b1-6a1d45c896ac",
+		"name": "Lawline",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{API_URI}}/api/product",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/product",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				},
+				"description": "Get list of products."
+			},
+			"response": []
+		},
+		{
+			"name": "{{API_URI}}/api/product",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Product name\",\n    \"description\": \"product description\",\n    \"price\": 2.99\n}"
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/product",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				},
+				"description": "Create a product."
+			},
+			"response": []
+		},
+		{
+			"name": "{{API_URI}}/api/product/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/product/1",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"1"
+					]
+				},
+				"description": "Get product-1."
+			},
+			"response": []
+		},
+		{
+			"name": "{{API_URI}}/api/product/1",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Product name\",\n    \"description\": \"product description\",\n    \"price\": 2.99\n}"
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/product/1",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"1"
+					]
+				},
+				"description": "Update product-1."
+			},
+			"response": []
+		},
+		{
+			"name": "{{API_URI}}/api/product/1",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/product/1",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"1"
+					]
+				},
+				"description": "Update product-1."
+			},
+			"response": []
+		},
+		{
+			"name": "{{API_URI}}/api/product/1",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/product/1",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"1"
+					]
+				},
+				"description": "Delete product-1."
+			},
+			"response": []
+		},
+		{
+			"name": "{{API_URI}}/api/user/product",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/user/product/2",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"product",
+						"2"
+					]
+				},
+				"description": "Get authenticated user's product list."
+			},
+			"response": []
+		},
+		{
+			"name": "{{API_URI}}/api/user/product/2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/user/product/2",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"product",
+						"2"
+					]
+				},
+				"description": "Get autheticated user's product-2."
+			},
+			"response": []
+		},
+		{
+			"name": "{{API_URI}}/api/user/product/2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/user/product/2",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"product",
+						"2"
+					]
+				},
+				"description": "Attached product-2 to authenticated user."
+			},
+			"response": []
+		},
+		{
+			"name": "{{API_URI}}/api/user/product/2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{API_URI}}/api/user/product/2",
+					"host": [
+						"{{API_URI}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"product",
+						"2"
+					]
+				},
+				"description": "Detach product-2 from authenticated user."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
