@@ -29,3 +29,5 @@ Route::get('/product/{product}', 'ProductController@show');
 Route::put('/product/{product}', 'ProductController@update');
 Route::patch('/product/{product}', 'ProductController@update');
 Route::delete('/product/{product}', 'ProductController@destroy');
+
+Route::put('/product/{product}/image', 'ProductController@image');

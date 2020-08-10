@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Psr\Http\Message\ServerRequestInterface;
 
 class ProductController extends Controller
 {
@@ -41,7 +42,7 @@ class ProductController extends Controller
         if ($user = $request->user()) {
             $product->user()->associate($user);
         }
-        
+
         $product->save();
 
         return $product->refresh();
@@ -87,5 +88,10 @@ class ProductController extends Controller
                 'deleted' => $product
             ];
         }
+    }
+
+    public function image(Request $request, Product $product)
+    {
+
     }
 }
