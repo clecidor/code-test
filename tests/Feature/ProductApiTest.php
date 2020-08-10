@@ -3,48 +3,17 @@
 namespace Tests\Feature;
 
 use App\Product;
-use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use \Symfony\Component\HttpFoundation\Response;
 
-class ProductApiTest extends TestCase
+
+class ProductApiTest extends ApiTestCase
 {
-    use DatabaseMigrations;
-    use WithFaker;
 
     /**
-     * @var User
+     * @return array
      */
-    protected $user;
-
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-        $this->user->products()->createMany(
-            factory(Product::class, 3)->make()->toArray()
-        );
-    }
-
-    protected function getHeaders () {
-        return [
-            'Authorization' => "Bearer {$this->user->api_token}"
-        ];
-    }
-
     protected function makeProductData() {
         return factory(Product::class)->make()->toArray();
-    }
-
-    protected function getRandomProduct() {
-        return $this->user->products()->inRandomOrder()->first();
     }
 
     /**
@@ -54,12 +23,12 @@ class ProductApiTest extends TestCase
      */
     public function testUnauthorizedProductsAccess()
     {
-        $this->json('GET', '/api/product')->assertStatus(401);
-        $this->json('POST', '/api/product')->assertStatus(401);
-        $this->json('GET', '/api/product/1')->assertStatus(401);
-        $this->json('PUT', '/api/product/1')->assertStatus(401);
-        $this->json('PATCH', '/api/product/1')->assertStatus(401);
-        $this->json('DELETE', '/api/product/1')->assertStatus(401);
+        $this->json('GET', '/api/product')->assertStatus(Response::HTTP_UNAUTHORIZED);
+        $this->json('POST', '/api/product')->assertStatus(Response::HTTP_UNAUTHORIZED);
+        $this->json('GET', '/api/product/1')->assertStatus(Response::HTTP_UNAUTHORIZED);
+        $this->json('PUT', '/api/product/1')->assertStatus(Response::HTTP_UNAUTHORIZED);
+        $this->json('PATCH', '/api/product/1')->assertStatus(Response::HTTP_UNAUTHORIZED);
+        $this->json('DELETE', '/api/product/1')->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
     /**
@@ -67,9 +36,9 @@ class ProductApiTest extends TestCase
      */
     public function testProductList() {
         $products = $this->user->products();
-        $this->withHeaders($this->getHeaders())
+        $this->withHeaders($this->getApiHeaders())
             ->getJson('/api/product')
-            ->assertStatus(200)
+            ->assertStatus(Response::HTTP_OK)
             ->assertJsonCount($products->count());
     }
 
@@ -78,8 +47,8 @@ class ProductApiTest extends TestCase
      */
     public function testProductPost() {
         $productData = $this->makeProductData();
-        $response = $this->withHeaders($this->getHeaders())->postJson('/api/product', $productData);
-        $response->assertStatus(201);
+        $response = $this->withHeaders($this->getApiHeaders())->postJson('/api/product', $productData);
+        $response->assertStatus(Response::HTTP_CREATED);
         $this->assertDatabaseHas('products', $productData);
     }
 
@@ -88,8 +57,8 @@ class ProductApiTest extends TestCase
      */
     public function testProductGet() {
         $product = $this->getRandomProduct();
-        $response = $this->withHeaders($this->getHeaders())->getJson("/api/product/{$product->id}");
-        $response->assertStatus(200);
+        $response = $this->withHeaders($this->getApiHeaders())->getJson("/api/product/{$product->id}");
+        $response->assertStatus(Response::HTTP_OK);
         $response->assertJson($product->toArray());
     }
 
@@ -99,10 +68,10 @@ class ProductApiTest extends TestCase
     public function testProductPut() {
         $product = $this->getRandomProduct();
         $productData = $this->makeProductData();
-        $response = $this->withHeaders($this->getHeaders())->putJson("/api/product/{$product->id}", $productData);
-        $response->assertStatus(200);
+        $response = $this->withHeaders($this->getApiHeaders())->putJson("/api/product/{$product->id}", $productData);
+        $response->assertStatus(Response::HTTP_OK);
 
-        $productData['id'] = $product->getKey();
+        $productData['id'] = $product->id;
         $this->assertDatabaseHas('products', $productData);
     }
 
@@ -112,10 +81,10 @@ class ProductApiTest extends TestCase
     public function testProductPatch() {
         $product = $this->getRandomProduct();
         $productData = $this->makeProductData();
-        $response = $this->withHeaders($this->getHeaders())->patchJson("/api/product/{$product->id}", $productData);
-        $response->assertStatus(200);
+        $response = $this->withHeaders($this->getApiHeaders())->patchJson("/api/product/{$product->id}", $productData);
+        $response->assertStatus(Response::HTTP_OK);
 
-        $productData['id'] = $product->getKey();
+        $productData['id'] = $product->id;
         $this->assertDatabaseHas('products', $productData);
     }
 
@@ -124,9 +93,9 @@ class ProductApiTest extends TestCase
      */
     public function testProductDelete() {
         $product = $this->getRandomProduct();
-        $response = $this->withHeaders($this->getHeaders())->deleteJson("/api/product/{$product->id}");
-        $response->assertStatus(200);
-        $this->assertDatabaseMissing('products', [$product->getKeyName() => $product->getKey()]);
+        $response = $this->withHeaders($this->getApiHeaders())->deleteJson("/api/product/{$product->id}");
+        $response->assertStatus(Response::HTTP_OK);
+        $this->assertDatabaseMissing('products', ['id' => $product->id]);
     }
 
 }

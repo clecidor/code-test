@@ -21,7 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/user/product', 'UserProductController@index');
 Route::get('/user/product/{product}', 'UserProductController@show');
 Route::put('/user/product/{product}', 'UserProductController@associateProduct');
-Route::patch('/user/product/{product}', 'UserProductController@associateProduct');
 Route::delete('/user/product/{product}', 'UserProductController@dissociateProduct');
 
 Route::post('/product', 'ProductController@store');
