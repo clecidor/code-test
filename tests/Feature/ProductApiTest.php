@@ -31,6 +31,16 @@ class ProductApiTest extends ApiTestCase
         $this->json('DELETE', '/api/product/1')->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
+    public function testProductRequiredFields() {
+        $response = $this->withHeaders($this->getApiHeaders())->postJson('/api/product', []);
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        $errors = $response->json('errors');
+        $this->assertStringContainsStringIgnoringCase('required', $errors['name'][0]);
+        $this->assertStringContainsStringIgnoringCase('required', $errors['description'][0]);
+        $this->assertStringContainsStringIgnoringCase('required', $errors['price'][0]);
+    }
+
     /**
      * Test GET /api/product
      */
